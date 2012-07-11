@@ -1,0 +1,38 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+
+    <Color x:Key="PhoneAccentColor">#009DC6</Color>
+    <SolidColorBrush x:Key="PhoneAccentBrush" Color="#009DC6"/>
+
+    <Color x:Key="PhoneForegroundColor">#434849</Color>
+    <SolidColorBrush x:Key="PhoneForegroundBrush" Color="#434849"/>
+
+    <Color x:Key="PhoneBackgroundColor">White</Color>
+    <SolidColorBrush x:Key="PhoneBackgroundBrush" Color="White" />
+
+    <Color x:Key="PhoneDisabledColor">#FFA3A3A5</Color>
+    <SolidColorBrush x:Key="PhoneDisabledBrush" Color="#FFA3A3A5" />
+
+    <Color x:Key="PhoneTextBoxColor">#DDDDDD</Color>
+    <SolidColorBrush x:Key="PhoneTextBoxBrush" Color="#DDDDDD" />
+
+    <Color x:Key="PhoneChromeColor">#FFDDF1F2</Color>
+    <SolidColorBrush x:Key="PhoneChromeBrush" Color="#FFDDF1F2" />
+
+    <SolidColorBrush x:Key="PhoneTextBoxEditBorderBrush" Color="#DDDDDD" />
+
+    <SolidColorBrush x:Key="PhoneRadioCheckBoxBrush" Color="#DDDDDD" />
+
+    <SolidColorBrush x:Key="PhoneContrastBackgroundBrush" Color="#FF6C7174" />
+
+    <SolidColorBrush x:Key="PhoneTextBoxEditBackgroundBrush" Color="White" />
+    
+    <SolidColorBrush x:Key="PhoneSubtleBrush" Color="#FF6C7174"/>
+
+</ResourceDictionary>

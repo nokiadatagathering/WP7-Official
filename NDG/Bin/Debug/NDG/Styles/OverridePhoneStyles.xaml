@@ -1,0 +1,30 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+
+
+    <Color x:Key="PhoneAccentColor">#FF00ABCD</Color>
+    <SolidColorBrush x:Key="PhoneAccentBrush" Color="#FF00ABCD"/>
+
+    <Color x:Key="PhoneForegroundColor">#FF6C7174</Color>
+    <SolidColorBrush x:Key="PhoneForegroundBrush" Color="#FF6C7174"/>
+
+    <Color x:Key="PhoneBackgroundColor">White</Color>
+    <SolidColorBrush x:Key="PhoneBackgroundBrush" Color="White" />
+
+    <Color x:Key="PhoneDisabledColor">#FFABAFB1</Color>
+    <SolidColorBrush x:Key="PhoneDisabledBrush" Color="#FFABAFB1" />
+
+    <Color x:Key="PhoneTextBoxColor">#FFABAFB1</Color>
+    <SolidColorBrush x:Key="PhoneTextBoxBrush" Color="#FFABAFB1" />
+
+    <Color x:Key="PhoneChromeColor">#FFDDF1F2</Color>
+    <SolidColorBrush x:Key="PhoneChromeBrush" Color="#FFDDF1F2" />
+    
+    <SolidColorBrush x:Key="PhoneTextBoxEditBorderBrush" Color="#FFABAFB1" />
+
+</ResourceDictionary>

@@ -1,0 +1,73 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="NDG.Views.Filter.FilterPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:filterControls="clr-namespace:NDG.Views.Filter"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:bar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:triggers="clr-namespace:NDG.Helpers.Triggers;assembly=NDG.Helpers"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    DataContext="{Binding FilterResponses, Source={StaticResource Locator}}"
+    Style="{StaticResource ApplicationPageStyle}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <triggers:InvokeOnNewPageTrigger Command="{Binding InitializeViewModelCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid Style="{StaticResource ContentGridStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <ContentControl Grid.Row="0"
+                        Content="{Binding FILTER_RESPONSES,Source={StaticResource LanguageStrings},
+                                    Converter={StaticResource StringToLowerConverter},
+                                    ConverterParameter='upper'}"
+                        Template="{StaticResource HeaderTemplate}" />
+
+        <toolkit:PerformanceProgressBar IsIndeterminate="{Binding Home.IsBusy, Source={StaticResource Locator}}"
+                                        Grid.Row="0"/>
+        <controls:Pivot Grid.Row="1" 
+                        SelectedIndex="{Binding CurrentFilter, Converter={StaticResource SelectedIndexToFilterPageConverter}, Mode=TwoWay}"
+                        Margin="12,0,12,74">
+            <controls:Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"
+                               Margin="-10,0,10,0"
+                               Style="{StaticResource PivotTitleStyle}" />
+                </DataTemplate>
+            </controls:Pivot.HeaderTemplate>
+
+            <controls:PivotItem Header="{Binding BY_DATE,Source={StaticResource LanguageStrings}}">
+                <filterControls:FilterDateControl />
+            </controls:PivotItem>
+            
+            <!--<controls:PivotItem Header="by location">
+                <filterControls:FilterLocationControl />
+            </controls:PivotItem>-->
+            
+        </controls:Pivot>
+        
+    </Grid>
+    
+    <bar:Bindable.ApplicationBar>
+        <bar:BindableApplicationBar BindableOpacity="0.99">
+            <bar:BindableApplicationBarButton IconUri="/Images/icons/go.png"
+                                              Text="{Binding APPBAR_CMD_OK,Source={StaticResource LanguageStrings}}"
+                                              Command="{Binding Navigation.NavigateToFilterResultCommand, Source={StaticResource Locator}}" />
+        </bar:BindableApplicationBar>
+    </bar:Bindable.ApplicationBar>
+
+</phone:PhoneApplicationPage>

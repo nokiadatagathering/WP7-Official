@@ -1,0 +1,7 @@
+D:\Projects\NDG\ndgNewArchitecture\BindableApplicationBar\Bin\Release\BindableApplicationBar.dll
+D:\Projects\NDG\ndgNewArchitecture\BindableApplicationBar\Bin\Release\BindableApplicationBar.pdb
+D:\Projects\NDG\ndgNewArchitecture\BindableApplicationBar\obj\Release\ResolveAssemblyReference.cache
+D:\Projects\NDG\ndgNewArchitecture\BindableApplicationBar\obj\Release\BindableApplicationBar.g.resources
+D:\Projects\NDG\ndgNewArchitecture\BindableApplicationBar\obj\Release\BindableApplicationBar.dll
+D:\Projects\NDG\ndgNewArchitecture\BindableApplicationBar\obj\Release\BindableApplicationBar.pdb
+D:\Projects\NDG\ndgNewArchitecture\BindableApplicationBar\Bin\Release\BindableApplicationBar.XML

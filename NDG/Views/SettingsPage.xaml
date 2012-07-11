@@ -1,0 +1,188 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="NDG.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:behaviors="clr-namespace:NDG.Helpers.Behaviors;assembly=NDG.Helpers"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:triggers="clr-namespace:NDG.Helpers.Triggers;assembly=NDG.Helpers"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:NDG.Helpers.Controls;assembly=NDG.Helpers"
+    xmlns:bar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    DataContext="{Binding Settings, Source={StaticResource Locator}}"
+    Style="{StaticResource ApplicationPageStyle}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <triggers:InvokeOnNewPageTrigger Command="{Binding InitializeViewModelCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <i:Interaction.Behaviors>
+        <behaviors:NavigationBackBehavior BackNavigationCommand="{Binding NavigationBackCommand}" />
+    </i:Interaction.Behaviors>
+
+    <phone:PhoneApplicationPage.Resources>
+        <Style TargetType="TextBlock" x:Key="TitleStyle">
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="Margin" Value="24,0" />
+        </Style>
+
+        <Style TargetType="toolkit:ListPicker" x:Key="PickerStyle">
+            <Setter Property="SelectionMode" Value="Single" />
+            <Setter Property="Margin" Value="24,0" />
+            <Setter Property="ExpansionMode" Value="FullScreenOnly" />
+        </Style>
+
+    </phone:PhoneApplicationPage.Resources>
+
+        <Grid Style="{StaticResource ContentGridStyle}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <ContentControl Content="{Binding SETTINGS,Source={StaticResource LanguageStrings},
+                                    Converter={StaticResource StringToLowerConverter},
+                                    ConverterParameter='upper'}"
+                        Template="{StaticResource HeaderTemplate}"
+                        Grid.Row="0" />
+
+            <toolkit:PerformanceProgressBar IsIndeterminate="{Binding Home.IsBusy, Source={StaticResource Locator}}" 
+                                        Grid.Row="0"/>
+
+            <!--RESOLUTION-->
+
+            <TextBlock Text="{Binding RESOLUTION,Source={StaticResource LanguageStrings}}"
+                   Style="{StaticResource TitleStyle}"
+                   Grid.Row="1" />
+
+            <toolkit:ListPicker Grid.Row="2"
+                            ItemsSource="{Binding Resolutions}"
+                            SelectedItem="{Binding SelectedResolution, Mode=TwoWay}"
+                            Style="{StaticResource PickerStyle}">
+
+                <toolkit:ListPicker.FullModeItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Style="{StaticResource ListPickFullModeStyle}" Text="{Binding}" Margin="0,0,0,20"/>
+                    </DataTemplate>
+                </toolkit:ListPicker.FullModeItemTemplate>
+
+            </toolkit:ListPicker>
+
+            <!--RESOLUTION-->
+
+            <!--LANGUAGE-->
+
+            <TextBlock Text="{Binding LANGUAGE,Source={StaticResource LanguageStrings}}"
+                   Grid.Row="3"                   
+                   Style="{StaticResource TitleStyle}" />
+
+            <toolkit:ListPicker ItemsSource="{Binding Languages}" Grid.Row="4"
+                            SelectedItem="{Binding CurrentLanguage,Mode=TwoWay}"
+                            Style="{StaticResource PickerStyle}">
+                <toolkit:ListPicker.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </toolkit:ListPicker.ItemTemplate>
+                <toolkit:ListPicker.FullModeItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" Style="{StaticResource ListPickFullModeStyle}" Margin="0,0,0,20" />
+                    </DataTemplate>
+                </toolkit:ListPicker.FullModeItemTemplate>
+            </toolkit:ListPicker>
+
+            <!--LANGUAGE-->
+
+            <!--SERVER_PATH-->
+
+            <TextBlock Text="{Binding SERVER_ADDRESS,Source={StaticResource LanguageStrings}}"
+                   Grid.Row="5"                   
+                   Style="{StaticResource TitleStyle}" />
+
+            <controls:MaskedBox MaskedText="{Binding ServerPath, Mode=TwoWay}" Grid.Row="6"
+                            StartTexts="{Binding EnabledProtocols}"
+                            EndText="/"
+                            Height="80" VerticalAlignment="Top" Margin="10,0">
+                <i:Interaction.Behaviors>
+                    <behaviors:TextBoxTextChangedBehavior />
+                </i:Interaction.Behaviors>
+            </controls:MaskedBox>
+
+            <!--SERVER_PATH-->
+
+            <!--GPS-->
+
+            <toolkit:ToggleSwitch Header="{Binding ALLOW_GPS,Source={StaticResource LanguageStrings}}" Grid.Row="7"
+                              Margin="14,0,-24,0"
+                              x:Name="gps"                              
+                              IsChecked="{Binding IsGpsEnabled, Mode=TwoWay}"
+                              Content="{Binding IsChecked, ElementName=gps, Converter={StaticResource OffOnTextConverter}}">
+                <i:Interaction.Behaviors>
+                    <behaviors:UpdateLoyauteBehavior IsNeedUpdateLoyaute="{Binding IsNeedUpdate}" />
+                </i:Interaction.Behaviors>
+
+                <toolkit:ToggleSwitch.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}"
+                               FontSize="24"
+                               Foreground="{StaticResource PhoneForegroundBrush}" />
+                    </DataTemplate>
+                </toolkit:ToggleSwitch.HeaderTemplate>
+            </toolkit:ToggleSwitch>
+            <!--GPS-->
+
+            <!--NEW_SURVEYS-->
+
+            <toolkit:ToggleSwitch Header="{Binding CHECK_NEW_SURVEYS,Source={StaticResource LanguageStrings}}" Grid.Row="8"
+                              x:Name="check"
+                              IsChecked="{Binding IsCheckForNewSurveysOnStart, Mode=TwoWay}"
+                              Content="{Binding IsChecked, ElementName=check, Converter={StaticResource OffOnTextConverter}}"
+                              Margin="14,0,-24,0">
+                <i:Interaction.Behaviors>
+                    <behaviors:UpdateLoyauteBehavior IsNeedUpdateLoyaute="{Binding IsNeedUpdate}" />
+                </i:Interaction.Behaviors>
+
+                <toolkit:ToggleSwitch.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}"
+                               FontSize="24"
+                               Foreground="{StaticResource PhoneForegroundBrush}" />
+                    </DataTemplate>
+                </toolkit:ToggleSwitch.HeaderTemplate>
+            </toolkit:ToggleSwitch>
+
+
+            <!--NEW_SURVEYS-->
+
+        </Grid>
+    <bar:Bindable.ApplicationBar>
+        <bar:BindableApplicationBar BindableOpacity="0.99">
+            <bar:BindableApplicationBarButton IconUri="/Images/icons/save.png"
+                                              Text="{Binding APPBAR_CMD_SAVE,Source={StaticResource LanguageStrings}}"
+                                              Command="{Binding SaveSettingsCommand}"/>
+
+            <bar:BindableApplicationBarButton IconUri="/Images/icons/restore.png"
+                                              Text="{Binding APPBAR_RESTORE_DEFAULT,Source={StaticResource LanguageStrings}}"
+                                              Command="{Binding RevertCommand}"/>
+        </bar:BindableApplicationBar>
+    </bar:Bindable.ApplicationBar>
+
+</phone:PhoneApplicationPage>

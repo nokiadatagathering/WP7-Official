@@ -1,0 +1,68 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="NDG.Views.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:behaviors="clr-namespace:NDG.Helpers.Behaviors;assembly=NDG.Helpers"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Style="{StaticResource ApplicationPageStyle}"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480">
+
+    <Grid Style="{StaticResource ContentGridStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <ContentControl Template="{StaticResource HeaderTemplate}"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Content="{Binding ABOUT, Source={StaticResource LanguageStrings},
+                                    Converter={StaticResource StringToLowerConverter},
+                                    ConverterParameter='upper'}" />
+        <TextBlock Text="Nokia Data Gathering offers a fast, accurate and cost effective way to collect data using mobile phones. It consists of a server module for questionnaire creation and a mobile client for data entry in the field. Nokia Data Gathering is an open source software created by Nokia and developer partners."
+                   Grid.Row="1"
+                   TextWrapping="Wrap"
+                   Margin="24,0,24,20"/>
+        
+        <TextBlock Margin="24,0,24,20" TextWrapping="Wrap" Text="Location data collected via this application and submitted to the Nokia Data Gathering server can be used for data plotting on Nokia Maps and data exports by the user only."
+                   Grid.Row="2"                   
+                    />
+        
+        <TextBlock Text="For further information contact"
+                   Grid.Row="3"
+                   Foreground="{StaticResource PhoneAccentBrush}"
+                   Margin="24,0"/>
+
+        <TextBlock Text="support@nokiadatagathering.net"
+                   Grid.Row="4"
+                   Margin="24,0,24,20">
+            <i:Interaction.Behaviors>
+                <behaviors:MailTaskBehavior />
+            </i:Interaction.Behaviors>
+        </TextBlock>
+
+        <TextBlock Text="Version"
+                   Grid.Row="5"
+                   Foreground="{StaticResource PhoneAccentBrush}"
+                   Margin="24,0"/>
+
+        <TextBlock Text="4.04"
+                   Grid.Row="6"
+                   Margin="24,0"/>
+
+    </Grid>
+    
+</phone:PhoneApplicationPage>

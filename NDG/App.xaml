@@ -1,0 +1,50 @@
+﻿<Application 
+    x:Class="NDG.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:viewModels="clr-namespace:NDG.ViewModels;assembly=NDG.ViewModels"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:converters="clr-namespace:NDG.Convertors"
+    xmlns:system="clr-namespce:System;assembly=mscorlib" 
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:languages="clr-namespace:NDG.BussinesLogic.Providers;assembly=NDG.BussinesLogic">
+
+    <!--Application Resources-->
+    <Application.Resources>
+        <ResourceDictionary>
+            <viewModels:Locator x:Key="Locator" />
+            
+            <converters:EmptyConverter x:Key="EmptyConverter" />
+            <converters:QuestionTypeToStyleConverter x:Key="QuestionTypeToStyleConverter" />
+            <converters:BoolleanToVisibilityConverter x:Key="BoolleanToVisibilityConverter" />
+            <converters:CurrentPageToHomeIndexConverter x:Key="CurrentPageToHomeIndexConverter" />
+            <converters:StringToLowerConverter x:Key="StringToLowerConverter" />
+            <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter" />
+            <converters:DateToTextConverter x:Key="DateToTextConverter" />
+            <converters:ServerUrlDisplayConverter x:Key="ServerUrlDisplayConverter"/>
+            <converters:MultipleChoiceQuestionConverter x:Key="MultipleChoiceQuestionConverter" />
+            <converters:NumberToNullableConverter x:Key="NumberToNullableConverter" />
+            <converters:SelectedIndexToFilterPageConverter x:Key="SelectedIndexToFilterPageConverter" />
+            <converters:DoubleToPercentsConverter x:Key="DoubleToPercentsConverter" />
+            <converters:CategoryNameConverter x:Key="CategoryNameConverter" />
+            <converters:BoolleanToMarginConverter x:Key="BoolleanToMarginConverter" />
+            <converters:OffOnTextConverter x:Key="OffOnTextConverter" />
+            <languages:LanguageStrings x:Key="LanguageStrings"/>
+            <ResourceDictionary.MergedDictionaries>                
+                <ResourceDictionary Source="/Styles/GlobalStyles.xaml" />
+                <ResourceDictionary Source="/Styles/FontStyles.xaml" />
+                <ResourceDictionary Source="/Styles/SurveysStyles.xaml" />
+                <ResourceDictionary Source="/Styles/QuestionsStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>  
+        
+    </Application.Resources>
+
+    <Application.ApplicationLifetimeObjects>
+        <!--Required object that handles lifetime events for the application-->
+        <shell:PhoneApplicationService 
+            Launching="Application_Launching" Closing="Application_Closing" 
+            Activated="Application_Activated" Deactivated="Application_Deactivated"/>
+    </Application.ApplicationLifetimeObjects>
+
+</Application>

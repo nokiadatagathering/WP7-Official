@@ -1,0 +1,78 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="NDG.Views.MySurveysPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:bar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
+    DataContext="{Binding MySurveys, Source={StaticResource Locator}}"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:triggers="clr-namespace:NDG.Helpers.Triggers;assembly=NDG.Helpers"
+    xmlns:behaviors="clr-namespace:NDG.Helpers.Behaviors;assembly=NDG.Helpers"
+    Style="{StaticResource ApplicationPageStyle}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <triggers:CommandTrigger Command="{Binding InitializeViewModelCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <i:Interaction.Behaviors>
+        <behaviors:NavigationBackBehavior BackNavigationCommand="{Binding NavigationBackCommand}" />
+    </i:Interaction.Behaviors>
+
+    <Grid Style="{StaticResource ContentGridStyle}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="80" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <toolkit:PerformanceProgressBar IsIndeterminate="{Binding Home.IsBusy, Source={StaticResource Locator}}"
+                                        Grid.Row="0"/>
+
+        <ContentControl Grid.Row="0" Template="{StaticResource HeaderTemplate}"
+                   Content="{Binding MY_SURVEYS,Source={StaticResource LanguageStrings},
+                                    Converter={StaticResource StringToLowerConverter}, ConverterParameter='upper'}"/>
+
+        <toolkit:PhoneTextBox Grid.Row="1"
+                              Margin="14,0"
+                              Text="{Binding SearchText, Mode=TwoWay}"
+                              Hint="{Binding SEARCH_WITH_DOTS, Source={StaticResource LanguageStrings}}"
+                              Foreground="Black"
+                              InputScope="Search">
+            <i:Interaction.Behaviors>
+                <behaviors:TextBoxTextChangedBehavior />
+            </i:Interaction.Behaviors>
+        </toolkit:PhoneTextBox>
+
+        <ItemsControl DataContext="{x:Null}" Style="{StaticResource ScrolledItemsControl}"
+                      ItemsSource="{Binding MySurveys.DisplayedSurveyses, Source={StaticResource Locator}}"
+                      Margin="24,0,24,0"
+                      Grid.Row="2">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button toolkit:TiltEffect.IsTiltEnabled="True"
+                            MinWidth="432"
+                            Template="{StaticResource MyServeysTemplate}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+    </Grid>
+    <bar:Bindable.ApplicationBar>
+        <bar:BindableApplicationBar BindableOpacity="0.75">
+            <bar:BindableApplicationBarButton IconUri="/Images/icons/filter.png"
+                                              Command="{Binding Navigation.NavigateToFilterCommand, Source={StaticResource Locator}}"
+                                              Text="{Binding APPBAR_FILTER, Source={StaticResource LanguageStrings}}"/>
+        </bar:BindableApplicationBar>
+    </bar:Bindable.ApplicationBar>
+</phone:PhoneApplicationPage>

@@ -1,0 +1,65 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="NDG.Views.Questions.SaveResponsesView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:behaviors="clr-namespace:NDG.Helpers.Behaviors;assembly=NDG.Helpers"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:bar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    DataContext="{Binding Category, Source={StaticResource Locator}}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    Style="{StaticResource ApplicationPageStyle}"    
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480">
+
+    <Grid Style="{StaticResource ContentGridStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <toolkit:PerformanceProgressBar IsIndeterminate="{Binding Home.IsBusy, Source={StaticResource Locator}}"
+                                        Grid.Row="0" />
+
+        <ContentControl Content="{Binding CurrentSurvey.Name, Converter={StaticResource StringToLowerConverter}, ConverterParameter='upper'}"
+                        Template="{StaticResource HeaderTemplate}"/>
+
+        <TextBlock Text="{Binding DETAILS,Source={StaticResource LanguageStrings}}" Style="{StaticResource PivotTitleStyle}" 
+                   Margin="24,0,24,0"
+                   Grid.Row="1" />
+
+        <TextBlock Text="{Binding NAME_YOUR_RESPONSE,Source={StaticResource LanguageStrings}}"
+                   Style="{StaticResource ContentText}"
+                   TextWrapping="Wrap"
+                   Margin="24,0,24,0"
+                   Grid.Row="2"/>
+
+        <TextBox Text="{Binding ResponseSetName, Mode=TwoWay}" 
+                 IsEnabled="{Binding IsPageEnabled}"
+                 VerticalAlignment="Top"
+                 Height="70"
+                 Grid.Row="3" Margin="14,0">
+            <i:Interaction.Behaviors>
+                <behaviors:TextBoxTextChangedBehavior />
+                <behaviors:ValidateTextLenghtBehavior MaxTextLenght="100" />
+                <behaviors:EnterPressedBehavior Command="{Binding SaveResponseSetCommand}" />
+            </i:Interaction.Behaviors>
+        </TextBox>
+        
+    </Grid>
+    
+    <bar:Bindable.ApplicationBar>
+        <bar:BindableApplicationBar>
+            <bar:BindableApplicationBarButton IconUri="/Images/icons/save.png"
+                                              Text="{Binding CMD_SAVE,Source={StaticResource LanguageStrings}}"
+                                              Command="{Binding SaveResponseSetCommand}"/>
+        </bar:BindableApplicationBar>
+    </bar:Bindable.ApplicationBar>
+
+</phone:PhoneApplicationPage>

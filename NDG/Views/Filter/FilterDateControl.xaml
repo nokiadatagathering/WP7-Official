@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="NDG.Views.Filter.FilterDateControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Binding RESPONSE_GENERATED,Source={StaticResource LanguageStrings}}"
+                   Style="{StaticResource ContentText}"
+                   TextWrapping="Wrap"
+                   Margin="0,-20,0,10"
+                   Grid.Row="0" />
+
+        <!--<toolkit:ListPicker Grid.Row="1" HorizontalAlignment="Stretch"
+                            ItemsSource="{Binding Periods}"
+                            SelectedItem="{Binding SelectedPeriod, Mode=TwoWay}"
+                            SelectionMode="Single"
+                            ExpansionMode="FullScreenOnly"
+                            Margin="2,0">
+            <toolkit:ListPicker.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Value}" />
+                </DataTemplate>
+            </toolkit:ListPicker.ItemTemplate>
+
+            <toolkit:ListPicker.FullModeItemTemplate>
+                <DataTemplate>
+                    <TextBlock Style="{StaticResource ListPickFullModeStyle}" Text="{Binding Value}" Margin="0,0,0,15"/>
+                </DataTemplate>
+            </toolkit:ListPicker.FullModeItemTemplate>
+
+        </toolkit:ListPicker>-->
+
+        <!--<toolkit:DatePicker Grid.Row="2" 
+                            Visibility="{Binding IsBetweenPeriodSelected, Converter={StaticResource BoolleanToVisibilityConverter},ConverterParameter=invert}"
+                            Value="{Binding SelectedDate, Mode=TwoWay}"
+                            Margin="-10,10" />-->
+
+        <toolkit:DatePicker Grid.Row="3" 
+                            Header="{Binding START_DATE,Source={StaticResource LanguageStrings}}"
+                            Value="{Binding SelectedStartDate, Mode=TwoWay}"
+                            Margin="-10,10" />
+
+        <toolkit:DatePicker Grid.Row="4" 
+                            Header="{Binding END_DATE,Source={StaticResource LanguageStrings}}"
+                            Value="{Binding SelectedEndDate, Mode=TwoWay}"
+                            Margin="-10,0" />
+
+    </Grid>
+
+</UserControl>

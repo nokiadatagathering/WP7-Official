@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="NDG.Views.Filter.FilterLocationControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:triggers="clr-namespace:NDG.Helpers.Triggers;assembly=NDG.Helpers"
+    xmlns:behaviors="clr-namespace:NDG.Helpers.Behaviors;assembly=NDG.Helpers"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">    
+    
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" x:Key="TitleStyle">
+            <Setter Property="FontSize"  Value="22" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+        
+        <Style TargetType="TextBox" x:Key="ValueStyle">
+            <Setter Property="Margin" Value="-10,0" />
+            <Setter Property="MinWidth" Value="432" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+        
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <RadioButton GroupName="LocationButtons"
+                     Grid.Row="0"
+                     IsChecked="{Binding IsFilterByGps, Mode=TwoWay}"
+                     Content="use GPS location"/>
+
+        <RadioButton GroupName="LocationButtons"
+                     Grid.Row="1"
+                     IsChecked="{Binding IsFilterByAddress, Mode=TwoWay}"
+                     x:Name="addressButton"
+                     Content="use address"/>
+
+        <StackPanel Visibility="{Binding IsChecked, ElementName=addressButton, Converter={StaticResource BoolleanToVisibilityConverter}}"
+                    Margin="10,0"
+                    Grid.Row="2">
+            <TextBlock Style="{StaticResource TitleStyle}"
+                       Text="Street Address" />
+
+            <TextBox Style="{StaticResource ValueStyle}" 
+                     Text="{Binding StreetAddress, Mode=TwoWay}">
+                <i:Interaction.Behaviors>
+                    <behaviors:TextBoxTextChangedBehavior />
+                    <behaviors:EnterPressedBehavior NextElement="{Binding ElementName=city}" />
+                </i:Interaction.Behaviors>
+            </TextBox>
+
+            <TextBlock Style="{StaticResource TitleStyle}"
+                       Text="City" />
+
+            <TextBox Style="{StaticResource ValueStyle}" 
+                     x:Name="city"
+                     Text="{Binding City, Mode=TwoWay}">
+                <i:Interaction.Behaviors>
+                    <behaviors:TextBoxTextChangedBehavior />
+                    <behaviors:EnterPressedBehavior NextElement="{Binding ElementName=state}" />
+                </i:Interaction.Behaviors>
+            </TextBox>
+
+            <TextBlock Style="{StaticResource TitleStyle}"
+                       x:Name="state"
+                       Text="State" />
+            <TextBox Style="{StaticResource ValueStyle}" 
+                     Text="{Binding State, Mode=TwoWay}">
+                <i:Interaction.Behaviors>
+                    <behaviors:TextBoxTextChangedBehavior />
+                </i:Interaction.Behaviors>
+            </TextBox>
+            
+        </StackPanel>
+        
+    </Grid>
+</UserControl>

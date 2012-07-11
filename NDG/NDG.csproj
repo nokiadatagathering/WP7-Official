@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3C5A412D-BE62-461B-9D3B-71EEEADCCF0A}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NDG</RootNamespace>
+    <AssemblyName>NDG</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>NDG.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>NDG.App</SilverlightAppEntry>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Coding4Fun.Phone.Controls">
+      <HintPath>..\Libreries\Coding4Fun\Coding4Fun.Phone.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WP7">
+      <HintPath>..\Libreries\GalaSoft.MvvmLight\GalaSoft.MvvmLight.WP7.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libreries\System.Windows.Interactivity\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="mscorlib.extensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Convertors\BoolleanToMarginConverter.cs" />
+    <Compile Include="Convertors\BoolleanToVisibilityConverter.cs" />
+    <Compile Include="Convertors\CategoryNameConverter.cs" />
+    <Compile Include="Convertors\CurrentPageToHomeIndexConverter.cs" />
+    <Compile Include="Convertors\DateToTextConverter.cs" />
+    <Compile Include="Convertors\DoubleToPercentsConverter.cs" />
+    <Compile Include="Convertors\EmptyConverter.cs" />
+    <Compile Include="Convertors\MultipleChoiceQuestionConverter.cs" />
+    <Compile Include="Convertors\NullableToVisibilityConverter.cs" />
+    <Compile Include="Convertors\NumberToNullableConverter.cs" />
+    <Compile Include="Convertors\OffOnTextConverter.cs" />
+    <Compile Include="Convertors\QuestionTypeToStyleConverter.cs" />
+    <Compile Include="Convertors\SelectedIndexToFilterPageConverter.cs" />
+    <Compile Include="Convertors\ServerUrlDisplayConverter.cs" />
+    <Compile Include="Convertors\StringToLowerConverter.cs" />
+    <Compile Include="Convertors\ValidateAnswerBehavior.cs" />
+    <Compile Include="MemoryDiagnosticsHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Filter\FilterDateControl.xaml.cs">
+      <DependentUpon>FilterDateControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Filter\FilteredSavedResponsesControl.xaml.cs">
+      <DependentUpon>FilteredSavedResponsesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Filter\FilteredSubmittedResultControl.xaml.cs">
+      <DependentUpon>FilteredSubmittedResultControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Filter\FilterLocationControl.xaml.cs">
+      <DependentUpon>FilterLocationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Filter\FilterPage.xaml.cs">
+      <DependentUpon>FilterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Filter\FilterResultPage.xaml.cs">
+      <DependentUpon>FilterResultPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\MySurveysControl.xaml.cs">
+      <DependentUpon>MySurveysControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\SavedResponsesControl.xaml.cs">
+      <DependentUpon>SavedResponsesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\SubmittedResponsesControl.xaml.cs">
+      <DependentUpon>SubmittedResponsesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MySurveysPage.xaml.cs">
+      <DependentUpon>MySurveysPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Questions\QuestionsPage.xaml.cs">
+      <DependentUpon>QuestionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Questions\ResponsesControl.xaml.cs">
+      <DependentUpon>ResponsesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Questions\SaveResponsesView.xaml.cs">
+      <DependentUpon>SaveResponsesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Questions\TableOfContentsControl.xaml.cs">
+      <DependentUpon>TableOfContentsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Questions\TableOfContentsPage.xaml.cs">
+      <DependentUpon>TableOfContentsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SavedResponsesPage.xaml.cs">
+      <DependentUpon>SavedResponsesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Search\SavedControl.xaml.cs">
+      <DependentUpon>SavedControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Search\SearchResultPage.xaml.cs">
+      <DependentUpon>SearchResultPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Search\SubmittedControl.xaml.cs">
+      <DependentUpon>SubmittedControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Search\SurveysControl.xaml.cs">
+      <DependentUpon>SurveysControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SubmittedResponsesPage.xaml.cs">
+      <DependentUpon>SubmittedResponsesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SurveyDetailsPage.xaml.cs">
+      <DependentUpon>SurveyDetailsPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ApplicationIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\background.png" />
+    <Content Include="Images\icons\add.png" />
+    <Content Include="Images\icons\filter.png" />
+    <Content Include="Images\icons\go.png" />
+    <Content Include="Images\icons\information.png" />
+    <Content Include="Images\icons\refresh.png" />
+    <Content Include="Images\icons\restore.png" />
+    <Content Include="Images\icons\save.png" />
+    <Content Include="Images\icons\search.png" />
+    <Content Include="Images\icons\settings.png" />
+    <Content Include="Images\icons\tableOfContents.png" />
+    <Content Include="Images\liveTile62V1.png" />
+    <Content Include="Images\liveTile62V2.png" />
+    <Content Include="Images\liveTileV1.png" />
+    <Content Include="Images\liveTileV2.png" />
+    <Content Include="Images\NDGHeaderLogo.png" />
+    <Content Include="Images\panoBg.png" />
+    <Content Include="Images\splashScreenV1.jpg" />
+    <Content Include="Images\splashScreenV2.jpg" />
+    <Content Include="Initial\English_en-GB.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Initial\NdgDB.sdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SplashScreenImage.jpg" />
+    <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BindableApplicationBar\BindableApplicationBar.csproj">
+      <Project>{4BE7F5D8-A46B-4FB8-AB58-11C9C425960E}</Project>
+      <Name>BindableApplicationBar</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Microsoft.Phone.Controls.Toolkit\Microsoft.Phone.Controls.Toolkit.csproj">
+      <Project>{0754458A-7AFC-463A-B27D-2F6980522119}</Project>
+      <Name>Microsoft.Phone.Controls.Toolkit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NDG.BussinesLogic\NDG.BussinesLogic.csproj">
+      <Project>{542622FE-47AD-4925-9F9F-37810D803804}</Project>
+      <Name>NDG.BussinesLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NDG.DataAccessModels\NDG.DataAccessModels.csproj">
+      <Project>{D6764E88-4947-467C-B1BD-F65F2E8E5004}</Project>
+      <Name>NDG.DataAccessModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NDG.Helpers\NDG.Helpers.csproj">
+      <Project>{E3C9BCC3-A5C2-4CDC-9187-2EB762EF6C8C}</Project>
+      <Name>NDG.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NDG.ViewModels\NDG.ViewModels.csproj">
+      <Project>{3CCBE4CA-9D70-4F20-8F2B-54453531FE06}</Project>
+      <Name>NDG.ViewModels</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Styles\GlobalStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Styles\SurveysStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Styles\QuestionsStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Styles\OverridePhoneStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Styles\FontStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Page Include="Views\AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Filter\FilterDateControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Filter\FilteredSavedResponsesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Filter\FilteredSubmittedResultControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Filter\FilterLocationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Filter\FilterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Filter\FilterResultPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Home\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Home\MySurveysControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Home\SavedResponsesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Home\SubmittedResponsesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MySurveysPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Questions\QuestionsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Questions\ResponsesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Questions\SaveResponsesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Questions\TableOfContentsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Questions\TableOfContentsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SavedResponsesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SearchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Search\SavedControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Search\SearchResultPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Search\SubmittedControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Search\SurveysControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SubmittedResponsesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SurveyDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions />
+</Project>

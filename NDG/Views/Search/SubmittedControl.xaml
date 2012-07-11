@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="NDG.Views.Search.SubmittedControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <ItemsControl Style="{StaticResource ScrolledItemsControl}"
+                  DataContext="{x:Null}"
+                  ItemsSource="{Binding Search.SubmittedResponses, Source={StaticResource Locator}}">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <Button toolkit:TiltEffect.IsTiltEnabled="True"
+                        Template="{StaticResource SubmittedResponsesTemplate}" />
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+
+</UserControl>

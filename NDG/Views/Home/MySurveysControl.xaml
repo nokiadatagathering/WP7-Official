@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="NDG.Views.Home.MySurveysControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:triggers="clr-namespace:NDG.Helpers.Triggers;assembly=NDG.Helpers"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:behaviors="clr-namespace:NDG.Helpers.Behaviors;assembly=NDG.Helpers"
+    mc:Ignorable="d"
+    DataContext="{Binding MySurveys, Source={StaticResource Locator}}"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <triggers:InvokeOnNewPageTrigger Command="{Binding InitializeViewModelCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <i:Interaction.Behaviors>
+        <behaviors:NavigationBackBehavior BackNavigationCommand="{Binding NavigationBackCommand}" />
+    </i:Interaction.Behaviors>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
+
+        <ItemsControl ItemsSource="{Binding TopSurveys}">
+            <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                    <Button toolkit:TiltEffect.IsTiltEnabled="True" 
+                    Template="{StaticResource MyServeysTemplate}" />
+                    </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <HyperlinkButton Grid.Row="1"
+                         Style="{StaticResource AccentLinkButton}"
+                         Command="{Binding Navigation.NavigateToMySurveysCommand, Source={StaticResource Locator}}"
+                         Content="{Binding VIEW_ALL, Source={StaticResource LanguageStrings}}"/>
+        
+    </Grid>
+</UserControl>

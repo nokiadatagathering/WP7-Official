@@ -1,0 +1,92 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:behaviors="clr-namespace:NDG.Helpers.Behaviors;assembly=NDG.Helpers"
+    xmlns:controls="clr-namespace:NDG.Helpers.Controls;assembly=NDG.Helpers"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:converters="clr-namespace:NDG.Convertors"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+
+    <Style TargetType="TextBlock" x:Key="QuestionTextStyle">
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <ControlTemplate x:Key="IntegerQuestion">
+        <TextBox Text="{Binding Data.Answer, Mode=TwoWay, Converter={StaticResource NumberToNullableConverter}}" InputScope="Number">
+            <i:Interaction.Behaviors>
+                <behaviors:TextBoxTextChangedBehavior />
+            </i:Interaction.Behaviors>
+        </TextBox>
+    </ControlTemplate>  
+
+    <ControlTemplate x:Key="DescriptiveQuestion">
+        <TextBox Text="{Binding Data.Answer, Mode=TwoWay}">
+            <i:Interaction.Behaviors>
+                <behaviors:TextBoxTextChangedBehavior />
+            </i:Interaction.Behaviors>
+        </TextBox>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="DateQuestion">
+        <toolkit:DatePicker Value="{Binding Data.Answer, Mode=TwoWay}"  />
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="DecimalQuestion">
+        <TextBox Text="{Binding Data.Answer, Mode=TwoWay, Converter={StaticResource NumberToNullableConverter}}" InputScope="Number">
+            <i:Interaction.Behaviors>
+                <behaviors:TextBoxTextChangedBehavior />
+            </i:Interaction.Behaviors>
+        </TextBox>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ExclusiveChoiceQuestion">
+        <toolkit:ListPicker ItemsSource="{Binding Data.Options}"
+                            SelectedItem="{Binding Data.Answer, Mode=TwoWay}" 
+                            SelectionMode="Single"
+                            ExpansionMode="FullScreenOnly">
+            <toolkit:ListPicker.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Text}" FontSize="24" />
+                </DataTemplate>
+            </toolkit:ListPicker.ItemTemplate>
+
+            <toolkit:ListPicker.FullModeItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Text}" FontSize="30" Margin="5,0,0,10" />
+                </DataTemplate>
+            </toolkit:ListPicker.FullModeItemTemplate>
+
+        </toolkit:ListPicker>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ImageQuestion">
+        <controls:ImagesPicker ImagesPickMode="Single" 
+                               SelectedImage="{Binding Data.Answer, Mode=TwoWay}" />
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="MultipleChocieQuestion">
+        <toolkit:ListPicker ItemsSource="{Binding Data.Options}"
+                            SelectedItems="{Binding Data.Answers, Mode=TwoWay, Converter={StaticResource MultipleChoiceQuestionConverter}}" 
+                            SelectionMode="Multiple"  
+                            SummaryForSelectedItemsDelegate="{Binding Category.SummarySelectionDelegate, Source={StaticResource Locator}}"
+                            ExpansionMode="FullScreenOnly">            
+            <toolkit:ListPicker.FullModeItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Text}" FontSize="30" Margin="5,0,0,10" />
+                </DataTemplate>
+            </toolkit:ListPicker.FullModeItemTemplate>
+
+        </toolkit:ListPicker>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="TimeQuestion">
+        <toolkit:TimePicker Value="{Binding Data.Answer, Mode=TwoWay}"  />
+    </ControlTemplate>
+
+</ResourceDictionary>

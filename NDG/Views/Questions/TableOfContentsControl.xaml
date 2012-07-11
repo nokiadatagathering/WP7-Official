@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="NDG.Views.Questions.TableOfContentsControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <ListBox ItemsSource="{Binding Categories}" Margin="{Binding IsSaveButtonVisible, Converter={StaticResource BoolleanToMarginConverter}, ConverterParameter='0,0,0,74'}">
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <Grid Margin="0,0,0,10">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Button Content="{Binding Name}"
+                            Grid.Row="0"
+                            Foreground="{StaticResource PhoneAccentBrush}"
+                            x:Name="button"
+                            Command="{Binding Category.SetSelectedIndexesCommand, Source={StaticResource Locator}}"
+                            CommandParameter="{Binding}"
+                            toolkit:TiltEffect.IsTiltEnabled="True"
+                            Margin="0,0,0,10">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <TextBlock Text="{TemplateBinding Content}" />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <ItemsControl ItemsSource="{Binding Question}" Grid.Row="1">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Content="{Binding Data.Label}"
+                                        x:Name="inner"
+                                        Command="{Binding Category.SetSelectedIndexesCommand, Source={StaticResource Locator}}"
+                                        CommandParameter="{Binding}"
+                                        toolkit:TiltEffect.IsTiltEnabled="True"
+                                        Margin="0,0,0,10">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <TextBlock Text="{TemplateBinding Content}" 
+                                                       FontWeight="Bold"
+                                                       TextWrapping="Wrap"/>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+
+</UserControl>

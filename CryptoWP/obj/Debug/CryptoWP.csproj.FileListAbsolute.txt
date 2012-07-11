@@ -1,0 +1,15 @@
+C:\Users\borovik\Documents\Visual Studio 2010\Projects\XFormsTest\CryptoWP\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\borovik\Documents\Visual Studio 2010\Projects\XFormsTest\CryptoWP\Bin\Debug\CryptoWP.dll
+C:\Users\borovik\Documents\Visual Studio 2010\Projects\XFormsTest\CryptoWP\Bin\Debug\CryptoWP.pdb
+C:\Users\borovik\Documents\Visual Studio 2010\Projects\XFormsTest\CryptoWP\obj\Debug\CryptoWP.dll
+C:\Users\borovik\Documents\Visual Studio 2010\Projects\XFormsTest\CryptoWP\obj\Debug\CryptoWP.pdb
+D:\Projects\NDG\trunk\CryptoWP\Bin\Debug\CryptoWP.dll
+D:\Projects\NDG\trunk\CryptoWP\Bin\Debug\CryptoWP.pdb
+D:\Projects\NDG\trunk\CryptoWP\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\NDG\trunk\CryptoWP\obj\Debug\CryptoWP.dll
+D:\Projects\NDG\trunk\CryptoWP\obj\Debug\CryptoWP.pdb
+D:\Projects\NDG\ndgNewArchitecture\CryptoWP\Bin\Debug\CryptoWP.dll
+D:\Projects\NDG\ndgNewArchitecture\CryptoWP\Bin\Debug\CryptoWP.pdb
+D:\Projects\NDG\ndgNewArchitecture\CryptoWP\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\NDG\ndgNewArchitecture\CryptoWP\obj\Debug\CryptoWP.dll
+D:\Projects\NDG\ndgNewArchitecture\CryptoWP\obj\Debug\CryptoWP.pdb

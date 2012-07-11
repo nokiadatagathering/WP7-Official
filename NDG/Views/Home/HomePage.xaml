@@ -1,0 +1,80 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="NDG.Views.Home.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"    
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:homeControls="clr-namespace:NDG.Views.Home"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:triggers="clr-namespace:NDG.Helpers.Triggers;assembly=NDG.Helpers"
+    xmlns:binBar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
+    xmlns:ctrShell="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    DataContext="{Binding Home, Source={StaticResource Locator}}"
+    Style="{StaticResource ApplicationPageStyle}"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <triggers:InvokeOnNewPageTrigger Command="{Binding InitializeViewModelCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
+    <Grid Style="{StaticResource ContentGridStyle}">
+
+        <toolkit:PerformanceProgressBar IsIndeterminate="{Binding Home.IsBusy, Source={StaticResource Locator}}"
+                                        VerticalAlignment="Top"
+                                        Margin="10,20,10,10"/>
+
+        <controls:Panorama SelectedIndex="{Binding CurrentPageIndex, Mode=TwoWay, Converter={StaticResource CurrentPageToHomeIndexConverter}}">
+            
+            <controls:Panorama.TitleTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Image Source="/Images/NDGHeaderLogo.png" Margin="0,100,0,0" />                        
+                    </StackPanel>
+                </DataTemplate>
+            </controls:Panorama.TitleTemplate>
+            
+            <controls:Panorama.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Style="{StaticResource PivotTitleStyle}" Margin="-10,0,0,0"
+                               Text="{Binding}" />
+                </DataTemplate>
+            </controls:Panorama.HeaderTemplate>
+
+            <controls:PanoramaItem Header="{Binding MY_SURVEYS,Source={StaticResource LanguageStrings}}" Margin="24,0,24,74">
+                <homeControls:MySurveysControl />
+            </controls:PanoramaItem>
+
+            <controls:PanoramaItem Header="{Binding SAVED,Source={StaticResource LanguageStrings}}" Margin="24,0,24,74">
+                <homeControls:SavedResponsesControl />
+            </controls:PanoramaItem>
+
+            <controls:PanoramaItem Header="{Binding SUBMITTED,Source={StaticResource LanguageStrings}}" Margin="24,0,24,74">
+                <homeControls:SubmittedResponsesControl />
+            </controls:PanoramaItem>
+
+      </controls:Panorama>
+    </Grid>
+    
+    <binBar:Bindable.ApplicationBar>
+        <binBar:BindableApplicationBar BindableOpacity="0.99" >
+            <binBar:BindableApplicationBarButton IconUri="/Images/icons/search.png"
+                                                 Text="{Binding APPBAR_SEARCH, Source={StaticResource LanguageStrings}}"
+                                                 Command="{Binding Navigation.NavigateToSearchCommand,Source={StaticResource Locator}}"/>
+            <binBar:BindableApplicationBarButton IconUri="/Images/icons/refresh.png"
+                                                 Text="{Binding APPBAR_REFRESH, Source={StaticResource LanguageStrings}}"
+                                                 Command="{Binding RefreshCommand}"/>            
+            <binBar:BindableApplicationBarButton IconUri="/Images/icons/settings.png"
+                                                 Text="{Binding APPBAR_SETTINGS, Source={StaticResource LanguageStrings}}"
+                                                 Command="{Binding Navigation.NavigateToSettingsCommand, Source={StaticResource Locator}}"/>
+            <binBar:BindableApplicationBarButton IconUri="/Images/icons/information.png"
+                                                 Text="{Binding APPBAR_INFO, Source={StaticResource LanguageStrings}}"
+                                                 Command="{Binding Navigation.NavigateToAboutCommand, Source={StaticResource Locator}}"/>
+        </binBar:BindableApplicationBar>
+    </binBar:Bindable.ApplicationBar>
+    
+</phone:PhoneApplicationPage>

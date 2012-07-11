@@ -1,0 +1,21 @@
+﻿<Deployment xmlns="http://schemas.microsoft.com/client/2007/deployment" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" EntryPointAssembly="NDG.UnitTesting" EntryPointType="NDG.UnitTesting.App" RuntimeVersion="4.7.50308.0">
+  <Deployment.Parts>
+    <AssemblyPart x:Name="NDG.UnitTesting" Source="NDG.UnitTesting.dll" />
+    <AssemblyPart x:Name="GalaSoft.MvvmLight.WP7" Source="GalaSoft.MvvmLight.WP7.dll" />
+    <AssemblyPart x:Name="Microsoft.Silverlight.Testing" Source="Microsoft.Silverlight.Testing.dll" />
+    <AssemblyPart x:Name="Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight" Source="Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll" />
+    <AssemblyPart x:Name="Moq.Silverlight" Source="Moq.Silverlight.dll" />
+    <AssemblyPart x:Name="NDG.BussinesLogic" Source="NDG.BussinesLogic.dll" />
+    <AssemblyPart x:Name="NDG.Common" Source="NDG.Common.dll" />
+    <AssemblyPart x:Name="NDG.DataAccessModels" Source="NDG.DataAccessModels.dll" />
+    <AssemblyPart x:Name="NDG.Helpers" Source="NDG.Helpers.dll" />
+    <AssemblyPart x:Name="NDG.ViewModels" Source="NDG.ViewModels.dll" />
+    <AssemblyPart x:Name="NDG.StorageAccess" Source="NDG.StorageAccess.dll" />
+    <AssemblyPart x:Name="System.Windows.Interactivity" Source="System.Windows.Interactivity.dll" />
+    <AssemblyPart x:Name="Coding4Fun.Phone.Controls" Source="Coding4Fun.Phone.Controls.dll" />
+    <AssemblyPart x:Name="Microsoft.Phone.Controls.Toolkit" Source="Microsoft.Phone.Controls.Toolkit.dll" />
+    <AssemblyPart x:Name="Microsoft.Phone.Controls" Source="Microsoft.Phone.Controls.dll" />
+    <AssemblyPart x:Name="NDG.JavaMessagesParser" Source="NDG.JavaMessagesParser.dll" />
+    <AssemblyPart x:Name="NDG.ModelsParser" Source="NDG.ModelsParser.dll" />
+  </Deployment.Parts>
+</Deployment>

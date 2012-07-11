@@ -1,0 +1,60 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="NDG.Views.SearchPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:behaviors="clr-namespace:NDG.Helpers.Behaviors;assembly=NDG.Helpers"
+    xmlns:triggers="clr-namespace:NDG.Helpers.Triggers;assembly=NDG.Helpers"
+    xmlns:bar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    DataContext="{Binding Search, Source={StaticResource Locator}}"
+    Style="{StaticResource ApplicationPageStyle}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480">
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <triggers:CommandTrigger Command="{Binding InitializeViewModelCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid Style="{StaticResource ContentGridStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="80" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <ContentControl Template="{StaticResource HeaderTemplate}"
+                   Content="{Binding SEARCH, Source={StaticResource LanguageStrings}, 
+                   Converter={StaticResource StringToLowerConverter},ConverterParameter='upper'}"
+                   Grid.Row="0" />
+
+        <toolkit:PhoneTextBox Grid.Row="1"   
+                              Hint="{Binding SEARCH_WITH_DOTS, Source={StaticResource LanguageStrings}}"
+                              InputScope="Search"
+                              Text="{Binding SearchString, Mode=TwoWay}"
+                              Foreground="Black"
+                              Margin="14,0">
+            <i:Interaction.Behaviors>
+                <behaviors:TextBoxTextChangedBehavior />
+                <behaviors:EnterPressedBehavior Command="{Binding Navigation.NavigateToSearchResultsCommand, Source={StaticResource Locator}}" />
+            </i:Interaction.Behaviors>
+        </toolkit:PhoneTextBox>
+    </Grid>
+    
+    <bar:Bindable.ApplicationBar>
+        <bar:BindableApplicationBar BindableOpacity="0.99">
+            <bar:BindableApplicationBarButton IconUri="/Images/icons/go.png"
+                                              Text="{Binding APPBAR_SEARCH, Source={StaticResource LanguageStrings}}"
+                                              Command="{Binding Navigation.NavigateToSearchResultsCommand, Source={StaticResource Locator}}" />
+        </bar:BindableApplicationBar>
+    </bar:Bindable.ApplicationBar>
+    
+</phone:PhoneApplicationPage>

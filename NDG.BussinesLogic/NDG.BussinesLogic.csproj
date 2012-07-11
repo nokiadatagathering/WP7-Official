@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{542622FE-47AD-4925-9F9F-37810D803804}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NDG.BussinesLogic</RootNamespace>
+    <AssemblyName>NDG.BussinesLogic</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="system.data.linq" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="mscorlib.extensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Governors\Interfaces\IResponseSetGovernor.cs" />
+    <Compile Include="Governors\Interfaces\ISurveyGovernor.cs" />
+    <Compile Include="Governors\ResponseSetGovernor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Governors\SurveyGovernor.cs" />
+    <Compile Include="Providers\Language\LanguageProvider.cs" />
+    <Compile Include="Providers\Language\LanguageStrings.cs" />
+    <Compile Include="Providers\Membership.cs" />
+    <Compile Include="Providers\Settings\SettingsProvider.cs" />
+    <Compile Include="SpecificLogic\FilterProcessor.cs" />
+    <Compile Include="SpecificLogic\SearchProcessor.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\NDG.Common\NDG.Common.csproj">
+      <Project>{3AE91283-82FA-4D59-B6EC-514F970FD1B0}</Project>
+      <Name>NDG.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NDG.DataAccessModels\NDG.DataAccessModels.csproj">
+      <Project>{D6764E88-4947-467C-B1BD-F65F2E8E5004}</Project>
+      <Name>NDG.DataAccessModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NDG.Helpers\NDG.Helpers.csproj">
+      <Project>{E3C9BCC3-A5C2-4CDC-9187-2EB762EF6C8C}</Project>
+      <Name>NDG.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NDG.StorageAccess\NDG.StorageAccess.csproj">
+      <Project>{D150DE2B-A757-469E-BF22-249945E3D320}</Project>
+      <Name>NDG.StorageAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

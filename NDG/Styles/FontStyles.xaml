@@ -1,0 +1,63 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"    
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">    
+
+    <Style TargetType="TextBox">
+        <Setter Property="FontSize" Value="24" />
+    </Style>
+    
+    <Style TargetType="TextBlock" x:Key="LoginTitleStyle">
+        <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}" />
+        <Setter Property="FontSize" Value="42" />
+    </Style>
+    
+    <Style TargetType="TextBlock" x:Key="SurveysNamesStyle">
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="FontFamily" Value="Segoe WP Bold" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    
+    <Style TargetType="TextBlock" x:Key="ListPickFullModeStyle">
+        <Setter Property="FontSize" Value="32" />
+        <Setter Property="Margin" Value="0,0,0,20" />
+    </Style>
+    
+    <Style TargetType="TextBlock" x:Key="ContentText">
+        <Setter Property="FontSize" Value="26" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    
+    <Style TargetType="TextBlock" x:Key="ReponseSetSurveySytle">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    
+    <Style TargetType="TextBlock" x:Key="DateTextStyle">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="Light" />
+    </Style>
+    
+    <Style TargetType="TextBlock" x:Key="PivotTitleStyle">
+        <Setter Property="FontSize" Value="60" />
+        <Setter Property="FontFamily" Value="Segoe WP SemiLight" />
+        <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="TitleTextStyle">
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="FontFamily" Value="Segoe WP Semibold" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="QuestionTextStyle">
+        <Setter Property="FontSize" Value="26" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+</ResourceDictionary>
