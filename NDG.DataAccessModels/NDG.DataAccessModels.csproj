@@ -57,6 +57,7 @@
     <Compile Include="DataModels\QuestionDataModels\DecimalQuestionData.cs" />
     <Compile Include="DataModels\QuestionDataModels\DescriptiveQuestionData.cs" />
     <Compile Include="DataModels\QuestionDataModels\ExclusiveChocieQuestionData.cs" />
+    <Compile Include="DataModels\QuestionDataModels\GeopointQuestionData.cs" />
     <Compile Include="DataModels\QuestionDataModels\ImageQuestionData.cs" />
     <Compile Include="DataModels\QuestionDataModels\IntegerQuestionData.cs" />
     <Compile Include="DataModels\QuestionDataModels\MultipleChoiceQuestionData.cs" />

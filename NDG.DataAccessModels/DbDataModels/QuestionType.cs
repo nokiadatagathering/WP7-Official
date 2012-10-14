@@ -25,5 +25,6 @@ namespace NDG.DataAccessModels
         ImageQuestion = 6,
         MultipleChocieQuestion = 7,
         TimeQuestion = 8,
+        GeopointQuestion = 9,
     }
 }

@@ -224,11 +224,9 @@ namespace NDG.ModelsParser
 
             var defaultAnswer = questionIterator.Value.Trim();
 
-
             var exclusiveQuestion = new ExclusiveChocieQuestionData
             {
                 Label = label,
-
             };
 
             foreach (var item in choiceElements)
@@ -340,6 +338,23 @@ namespace NDG.ModelsParser
             return new TypedXmlSerializer<ImageQuestionData>().SerializeToXmlString(question);
         }
 
+        public static string CreateGeopointQuestion(XElement questionIterator, Category parent, XDocument xmlDocument)
+        {
+            var questionId = questionIterator.Name.LocalName;
+
+            var label = xmlDocument.Element(Namespaces.XHtmlNamespace + "html").Element(Namespaces.XHtmlNamespace + "head")
+                     .Element(Namespaces.DefaultNamespace + "model").Element(Namespaces.DefaultNamespace + "itext").Element(Namespaces.DefaultNamespace + "translation")
+                     .Elements().ToList().Where(e => e.Attribute("id").Value.Equals(string.Format("/data/{0}/{1}:label", parent.SystemID, questionId))).Single().Element(Namespaces.DefaultNamespace + "value").Value;
+
+            var question = new GeopointQuestionData
+            {
+                Label = label,
+                Answer = questionIterator.Value,
+            };
+
+            return new TypedXmlSerializer<GeopointQuestionData>().SerializeToXmlString(question);
+        }
+
         private static Dictionary<string, string> GetConstraints(string constraint, string expression)
         {
             var result = new Dictionary<string, string>();
@@ -347,7 +362,9 @@ namespace NDG.ModelsParser
             var match = regex.Match(constraint);
 
             foreach (var groupName in regex.GetGroupNames())
+            {
                 result.Add(groupName, match.Groups[groupName].Value);
+            }
 
             return result;
         }

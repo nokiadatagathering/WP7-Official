@@ -46,6 +46,9 @@ namespace NDG.DataAccessModels.DataModels
                 case QuestionType.TimeQuestion:
                     return new TypedXmlSerializer<TimeQuestionData>().DeserializeFromXmlString(question.XML);
 
+                case QuestionType.GeopointQuestion:
+                    return new TypedXmlSerializer<GeopointQuestionData>().DeserializeFromXmlString(question.XML);
+
                 default:
                     throw new ArgumentException("XML data for question is invalid!");
 
