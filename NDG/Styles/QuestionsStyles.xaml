@@ -87,4 +87,8 @@
         <toolkit:TimePicker IsEnabled="{Binding Data.IsEnabled}" Value="{Binding Data.Answer, Mode=TwoWay}"  />
     </ControlTemplate>
 
+    <ControlTemplate x:Key="GeopointQuestion">
+        <controls:GeopointPicker IsEnabled="{Binding Data.IsEnabled}" RecordedLocation="{Binding Data.Answer, Mode=TwoWay}"/>
+    </ControlTemplate>
+
 </ResourceDictionary>

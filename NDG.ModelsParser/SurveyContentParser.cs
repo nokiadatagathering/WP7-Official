@@ -148,6 +148,11 @@ namespace NDG.XFormsParser
                     question.Type = QuestionType.ImageQuestion;
                     question.XML = QuestionDataFactory.CreateImageQuestion(questionIterator, category, xmlDocument);
                     break;
+
+                case "geopoint":
+                    question.Type = QuestionType.GeopointQuestion;
+                    question.XML = QuestionDataFactory.CreateGeopointQuestion(questionIterator, category, xmlDocument);
+                    break;
             }
 
             if (!string.IsNullOrEmpty(question.XML))

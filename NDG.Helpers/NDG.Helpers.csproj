@@ -85,6 +85,7 @@
     <Compile Include="Classes\UrlCompleter.cs" />
     <Compile Include="Classes\VisualTreeHelperExtensions.cs" />
     <Compile Include="Controls\ConfirmationBox.cs" />
+    <Compile Include="Controls\GeopointPicker.cs" />
     <Compile Include="Controls\ImagesPicker.cs" />
     <Compile Include="Controls\MaskedBox.cs" />
     <Compile Include="Triggers\CommandTrigger.cs" />
