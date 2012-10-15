@@ -44,6 +44,17 @@ namespace NDG.Convertors
                 this.currentQuestion = question;
                 if (this.currentQuestion.Data != null)
                 {
+                    bool isAnswerValid = this.currentQuestion.Data.Validate();
+                    if (!isAnswerValid)
+                    {
+                        this.InvalidMessage = this.currentQuestion.Data.InvalidMessage;
+                        this.InvalidContentVisibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        this.InvalidContentVisibility = Visibility.Collapsed;
+                        this.InvalidMessage = null;
+                    }
                     this.currentQuestion.Data.PropertyChanged += this.OnPropertyChanged;
                 }
             }

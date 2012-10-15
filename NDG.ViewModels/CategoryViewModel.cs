@@ -346,8 +346,16 @@ namespace NDG.ViewModels
 
         private bool SaveResponseSetCanExecute()
         {
+            var isRequired = false;
+            var questionsCollection = categories.SelectMany(c => c.Question);
+            foreach (var question in questionsCollection)
+            {
+                if (!question.Data.Validate())
+                    isRequired = true;
+            }
+
             return !string.IsNullOrEmpty(this.responseSetName) && !string.IsNullOrEmpty(this.responseSetName.Trim())
-                && !isSaveStarted;
+                && !isSaveStarted && !isRequired;
         }
 
         private void UploadToServiceExecute(ResponseSet selectedResponseSet)
