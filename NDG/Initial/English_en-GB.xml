@@ -2313,4 +2313,20 @@
       <string>record location</string>
     </Value>
   </Item>
+  <Item>
+    <Key>
+      <string>QTJ_ADD_IMAGE</string>
+    </Key>
+    <Value>
+      <string>add image</string>
+    </Value>
+  </Item>
+  <Item>
+    <Key>
+      <string>QTJ_REMOVE_IMAGE</string>
+    </Key>
+    <Value>
+      <string>remove</string>
+    </Value>
+  </Item>
 </SerializableDictionaryOfStringString>

@@ -322,6 +322,8 @@ namespace NDG.BussinesLogic.Providers
         public string APPBAR_NEW { get { return LanguageProvider.CurrentLanguage.TryGetString("QTJ_APPBAR_NEW"); } }
 
         public string RECORD_LOCATION { get { return LanguageProvider.CurrentLanguage.TryGetString("QTJ_RECORD_LOCATION"); } }
+        public string ADD_IMAGE { get { return LanguageProvider.CurrentLanguage.TryGetString("QTJ_ADD_IMAGE"); } }
+        public string REMOVE_IMAGE { get { return LanguageProvider.CurrentLanguage.TryGetString("QTJ_REMOVE_IMAGE"); } }
 
         public void RaiseAllPropertyChanged()
         {

@@ -264,22 +264,24 @@
                                                Grid.Column="0"
                                                Width="100" Stretch="UniformToFill" />
 
-                                        <Button Grid.Column="1" Content="remove"
-                                                    Command="{Binding RemoveCommand}"
-                                                    CommandParameter="{Binding}"
-                                                    Margin="0,0,5,0"
-                                                    Style="{TemplateBinding RemoveButtonStyle}"
-                                                    x:Name="removeButton"
-                                                    Height="80"/>
+                                        <Button Grid.Column="1" 
+                                                Content="{Binding REMOVE_IMAGE, Source={StaticResource LanguageStrings}}"
+                                                Command="{Binding RemoveCommand}"
+                                                CommandParameter="{Binding}"
+                                                Margin="0,0,5,0"
+                                                Style="{TemplateBinding RemoveButtonStyle}"
+                                                x:Name="removeButton"
+                                                Height="80"/>
 
                                     </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
 
-                        <Button Content="add image" Grid.Row="1" 
-                                    Margin="0,0,5,0"
-                                    x:Name="addButton" />
+                        <Button Content="{Binding ADD_IMAGE, Source={StaticResource LanguageStrings}}"
+                                Grid.Row="1" 
+                                Margin="0,0,5,0"
+                                x:Name="addButton" />
 
                     </Grid>
                 </ControlTemplate>
