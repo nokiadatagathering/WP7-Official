@@ -54,26 +54,47 @@ namespace NDG.DataAccessModels.DataModels
             return MinValue != null;
         }
 
+        public bool Required { get; set; }
+
         public override bool Validate()
         {
-            if (!IsEnabled)
-                return true;
-
-            if (!Answer.HasValue)
-                return false;
-
             var validationResult = true;
 
-            if (IsMaxValueSet())
+            if(Required)
             {
-                validationResult &= Answer <= MaxValue;
-            }
-            if (IsMinValueSet())
-            {
-                validationResult &= Answer >= MinValue;
-            }
-            return validationResult;
+                if (!Answer.HasValue)
+                    return false;
 
+                if (IsMaxValueSet())
+                {
+                    validationResult &= Answer <= MaxValue;
+                }
+                if (IsMinValueSet())
+                {
+                    validationResult &= Answer >= MinValue;
+                }
+                return validationResult;
+            }
+
+            //if (!IsEnabled)
+            //    return true;
+
+            //if (!Answer.HasValue)
+            //    return false;
+
+            if (Answer.HasValue)
+            {
+                if (IsMaxValueSet())
+                {
+                    validationResult &= Answer <= MaxValue;
+                }
+                if (IsMinValueSet())
+                {
+                    validationResult &= Answer >= MinValue;
+                }
+            }
+
+            return validationResult;
         }
 
 
@@ -82,7 +103,7 @@ namespace NDG.DataAccessModels.DataModels
             get
             {
                 var invalidMessage = new StringBuilder();
-                if (!Answer.HasValue)
+                if (!Answer.HasValue && Required)
                 {
                     invalidMessage.AppendFormat("Please input an integer value!");
                     return invalidMessage.ToString();

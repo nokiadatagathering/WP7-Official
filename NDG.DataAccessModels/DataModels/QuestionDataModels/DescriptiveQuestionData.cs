@@ -39,18 +39,24 @@ namespace NDG.DataAccessModels.DataModels
 
         public int MaxLength { get; set; }
 
+        public bool Required { get; set; }
+
         public override bool Validate()
         {
-            return !IsEnabled || (!string.IsNullOrEmpty(Answer) && Answer.Length <= MaxLength);
-
+            if(Required)
+                return !IsEnabled || (!string.IsNullOrEmpty(Answer) && Answer.Length <= MaxLength && Required);
+            return !IsEnabled || (Answer.Length <= MaxLength);
         }
 
         public override string InvalidMessage
         {
             get
             {
-                if(string.IsNullOrEmpty(Answer))
-                    return string.Format("Please fill an answer!");
+                if (string.IsNullOrEmpty(Answer) && Required)
+                {
+                    return string.Format("An answer is required!");
+                }
+
                 return string.Format("Maximum length is {0}",MaxLength);
             }
         }

@@ -56,6 +56,17 @@ namespace NDG.ModelsParser
 
             var defaultAnswer = questionIterator.Value;
 
+            var required = xmlDocument.Element(Namespaces.XHtmlNamespace + "html").Element(Namespaces.XHtmlNamespace + "head")
+                    .Element(Namespaces.DefaultNamespace + "model").Elements(Namespaces.DefaultNamespace + "bind").ToList()
+                    .Where(e => e.Attribute("nodeset").Value.Equals(string.Format("/data/{0}/{1}", parent.SystemID, questionId))).Single().Attribute("required");
+
+            var isRequired = false;
+
+            if (required != null)
+            {
+                isRequired = GetRequired(required.Value, @"\w+");
+            }
+
             var label = xmlDocument.Element(Namespaces.XHtmlNamespace + "html").Element(Namespaces.XHtmlNamespace + "head")
                     .Element(Namespaces.DefaultNamespace + "model").Element(Namespaces.DefaultNamespace + "itext").Element(Namespaces.DefaultNamespace + "translation")
                     .Elements().ToList().Where(e => e.Attribute("id").Value.Equals(string.Format("/data/{0}/{1}:label", parent.SystemID, questionId))).Single().Element(Namespaces.DefaultNamespace + "value").Value;
@@ -64,6 +75,7 @@ namespace NDG.ModelsParser
                 Label = label,
                 Answer = defaultAnswer,
                 MaxLength = length,
+                Required = isRequired,
             };
             return new TypedXmlSerializer<DescriptiveQuestionData>().SerializeToXmlString(descriptiveQuestionData);
         }
@@ -99,6 +111,17 @@ namespace NDG.ModelsParser
                 defaultAnswer = intialDefaultAnswer;
             }
 
+            var required = xmlDocument.Element(Namespaces.XHtmlNamespace + "html").Element(Namespaces.XHtmlNamespace + "head")
+                    .Element(Namespaces.DefaultNamespace + "model").Elements(Namespaces.DefaultNamespace + "bind").ToList()
+                    .Where(e => e.Attribute("nodeset").Value.Equals(string.Format("/data/{0}/{1}", parent.SystemID, questionId))).Single().Attribute("required");
+
+            var isRequired = false;
+
+            if (required != null)
+            {
+                isRequired = GetRequired(required.Value, @"\w+");
+            }
+
             var label = xmlDocument.Element(Namespaces.XHtmlNamespace + "html").Element(Namespaces.XHtmlNamespace + "head")
                     .Element(Namespaces.DefaultNamespace + "model").Element(Namespaces.DefaultNamespace + "itext").Element(Namespaces.DefaultNamespace + "translation")
                     .Elements().ToList().Where(e => e.Attribute("id").Value.Equals(string.Format("/data/{0}/{1}:label", parent.SystemID, questionId))).Single().Element(Namespaces.DefaultNamespace + "value").Value;
@@ -109,6 +132,7 @@ namespace NDG.ModelsParser
                 Answer = defaultAnswer,
                 MinValue = min,
                 MaxValue = max,
+                Required = isRequired,
             };
 
             return new TypedXmlSerializer<IntegerQuestionData>().SerializeToXmlString(integerQuestionData);
@@ -145,6 +169,17 @@ namespace NDG.ModelsParser
                 defaultAnswer = intialDefaultAnswer;
             }
 
+            var required = xmlDocument.Element(Namespaces.XHtmlNamespace + "html").Element(Namespaces.XHtmlNamespace + "head")
+                    .Element(Namespaces.DefaultNamespace + "model").Elements(Namespaces.DefaultNamespace + "bind").ToList()
+                    .Where(e => e.Attribute("nodeset").Value.Equals(string.Format("/data/{0}/{1}", parent.SystemID, questionId))).Single().Attribute("required");
+
+            var isRequired = false;
+
+            if (required != null)
+            {
+                isRequired = GetRequired(required.Value, @"\w+");
+            }
+
             var label = xmlDocument.Element(Namespaces.XHtmlNamespace + "html").Element(Namespaces.XHtmlNamespace + "head")
                     .Element(Namespaces.DefaultNamespace + "model").Element(Namespaces.DefaultNamespace + "itext").Element(Namespaces.DefaultNamespace + "translation")
                     .Elements().ToList().Where(e => e.Attribute("id").Value.Equals(string.Format("/data/{0}/{1}:label", parent.SystemID, questionId))).Single().Element(Namespaces.DefaultNamespace + "value").Value;
@@ -155,6 +190,7 @@ namespace NDG.ModelsParser
                 Answer = defaultAnswer,
                 MinValue = min,
                 MaxValue = max,
+                Required = isRequired,
             };
 
             return new TypedXmlSerializer<DecimalQuestionData>().SerializeToXmlString(decimalQuestionData);
@@ -176,10 +212,22 @@ namespace NDG.ModelsParser
 
             var defaultAnswers = questionIterator.Value.Split(new string[1] { " " }, StringSplitOptions.RemoveEmptyEntries);
 
+            var required = xmlDocument.Element(Namespaces.XHtmlNamespace + "html").Element(Namespaces.XHtmlNamespace + "head")
+                    .Element(Namespaces.DefaultNamespace + "model").Elements(Namespaces.DefaultNamespace + "bind").ToList()
+                    .Where(e => e.Attribute("nodeset").Value.Equals(string.Format("/data/{0}/{1}", parent.SystemID, questionId))).Single().Attribute("required");
+
+            var isRequired = false;
+
+            if (required != null)
+            {
+                isRequired = GetRequired(required.Value, @"\w+");
+            }
+
             var multipleQuestion = new MultipleChoiceQuestionData
             {
                 Label = label,
                 Answers = new System.Collections.ObjectModel.ObservableCollection<ChoiceTextValuePair>(),
+                Required = isRequired,
             };
 
             foreach (var item in choiceElements)
@@ -224,9 +272,21 @@ namespace NDG.ModelsParser
 
             var defaultAnswer = questionIterator.Value.Trim();
 
+            var required = xmlDocument.Element(Namespaces.XHtmlNamespace + "html").Element(Namespaces.XHtmlNamespace + "head")
+                    .Element(Namespaces.DefaultNamespace + "model").Elements(Namespaces.DefaultNamespace + "bind").ToList()
+                    .Where(e => e.Attribute("nodeset").Value.Equals(string.Format("/data/{0}/{1}", parent.SystemID, questionId))).Single().Attribute("required");
+
+            var isRequired = false;
+
+            if (required != null)
+            {
+                isRequired = GetRequired(required.Value, @"\w+");
+            }
+
             var exclusiveQuestion = new ExclusiveChocieQuestionData
             {
                 Label = label,
+                Required = isRequired,
             };
 
             foreach (var item in choiceElements)
@@ -264,6 +324,17 @@ namespace NDG.ModelsParser
             if (!string.IsNullOrEmpty(questionIterator.Value))
                 defaultAnswer = DateTime.ParseExact(questionIterator.Value, "hh:mm:ss", CultureInfo.InvariantCulture);
 
+            var required = xmlDocument.Element(Namespaces.XHtmlNamespace + "html").Element(Namespaces.XHtmlNamespace + "head")
+                    .Element(Namespaces.DefaultNamespace + "model").Elements(Namespaces.DefaultNamespace + "bind").ToList()
+                    .Where(e => e.Attribute("nodeset").Value.Equals(string.Format("/data/{0}/{1}", parent.SystemID, questionId))).Single().Attribute("required");
+
+            var isRequired = false;
+
+            if (required != null)
+            {
+                isRequired = GetRequired(required.Value, @"\w+");
+            }
+
             var label = xmlDocument.Element(Namespaces.XHtmlNamespace + "html").Element(Namespaces.XHtmlNamespace + "head")
                     .Element(Namespaces.DefaultNamespace + "model").Element(Namespaces.DefaultNamespace + "itext").Element(Namespaces.DefaultNamespace + "translation")
                     .Elements().ToList().Where(e => e.Attribute("id").Value.Equals(string.Format("/data/{0}/{1}:label", parent.SystemID, questionId))).Single().Element(Namespaces.DefaultNamespace + "value").Value;
@@ -272,6 +343,7 @@ namespace NDG.ModelsParser
             {
                 Answer = defaultAnswer,
                 Label = label,
+                Required = isRequired,
 
             };
 
@@ -305,6 +377,17 @@ namespace NDG.ModelsParser
             if (!string.IsNullOrEmpty(questionIterator.Value))
                 defaultAnswer = DateTime.ParseExact(questionIterator.Value, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
+            var required = xmlDocument.Element(Namespaces.XHtmlNamespace + "html").Element(Namespaces.XHtmlNamespace + "head")
+                    .Element(Namespaces.DefaultNamespace + "model").Elements(Namespaces.DefaultNamespace + "bind").ToList()
+                    .Where(e => e.Attribute("nodeset").Value.Equals(string.Format("/data/{0}/{1}", parent.SystemID, questionId))).Single().Attribute("required");
+
+            var isRequired = false;
+
+            if (required != null)
+            {
+                isRequired = GetRequired(required.Value, @"\w+");
+            }
+
             var label = xmlDocument.Element(Namespaces.XHtmlNamespace + "html").Element(Namespaces.XHtmlNamespace + "head")
                     .Element(Namespaces.DefaultNamespace + "model").Element(Namespaces.DefaultNamespace + "itext").Element(Namespaces.DefaultNamespace + "translation")
                     .Elements().ToList().Where(e => e.Attribute("id").Value.Equals(string.Format("/data/{0}/{1}:label", parent.SystemID, questionId))).Single().Element(Namespaces.DefaultNamespace + "value").Value;
@@ -315,6 +398,7 @@ namespace NDG.ModelsParser
                 Answer = defaultAnswer,
                 MaxDate = max,
                 MinDate = min,
+                Required = isRequired,
             };
 
 
@@ -325,6 +409,17 @@ namespace NDG.ModelsParser
         {
             var questionId = questionIterator.Name.LocalName;
 
+            var required = xmlDocument.Element(Namespaces.XHtmlNamespace + "html").Element(Namespaces.XHtmlNamespace + "head")
+                    .Element(Namespaces.DefaultNamespace + "model").Elements(Namespaces.DefaultNamespace + "bind").ToList()
+                    .Where(e => e.Attribute("nodeset").Value.Equals(string.Format("/data/{0}/{1}", parent.SystemID, questionId))).Single().Attribute("required");
+
+            var isRequired = false;
+
+            if (required != null)
+            {
+                isRequired = GetRequired(required.Value, @"\w+");
+            }
+
             var label = xmlDocument.Element(Namespaces.XHtmlNamespace + "html").Element(Namespaces.XHtmlNamespace + "head")
                      .Element(Namespaces.DefaultNamespace + "model").Element(Namespaces.DefaultNamespace + "itext").Element(Namespaces.DefaultNamespace + "translation")
                      .Elements().ToList().Where(e => e.Attribute("id").Value.Equals(string.Format("/data/{0}/{1}:label", parent.SystemID, questionId))).Single().Element(Namespaces.DefaultNamespace + "value").Value;
@@ -333,6 +428,7 @@ namespace NDG.ModelsParser
             {
                 Label = label,
                 AnswerBase64 = questionIterator.Value,
+                Required = isRequired,
             };
 
             return new TypedXmlSerializer<ImageQuestionData>().SerializeToXmlString(question);
@@ -342,6 +438,17 @@ namespace NDG.ModelsParser
         {
             var questionId = questionIterator.Name.LocalName;
 
+            var required = xmlDocument.Element(Namespaces.XHtmlNamespace + "html").Element(Namespaces.XHtmlNamespace + "head")
+                    .Element(Namespaces.DefaultNamespace + "model").Elements(Namespaces.DefaultNamespace + "bind").ToList()
+                    .Where(e => e.Attribute("nodeset").Value.Equals(string.Format("/data/{0}/{1}", parent.SystemID, questionId))).Single().Attribute("required");
+
+            var isRequired = false;
+
+            if (required != null)
+            {
+                isRequired = GetRequired(required.Value, @"\w+");
+            }
+
             var label = xmlDocument.Element(Namespaces.XHtmlNamespace + "html").Element(Namespaces.XHtmlNamespace + "head")
                      .Element(Namespaces.DefaultNamespace + "model").Element(Namespaces.DefaultNamespace + "itext").Element(Namespaces.DefaultNamespace + "translation")
                      .Elements().ToList().Where(e => e.Attribute("id").Value.Equals(string.Format("/data/{0}/{1}:label", parent.SystemID, questionId))).Single().Element(Namespaces.DefaultNamespace + "value").Value;
@@ -350,6 +457,7 @@ namespace NDG.ModelsParser
             {
                 Label = label,
                 Answer = questionIterator.Value,
+                Required = isRequired,
             };
 
             return new TypedXmlSerializer<GeopointQuestionData>().SerializeToXmlString(question);
@@ -367,6 +475,14 @@ namespace NDG.ModelsParser
             }
 
             return result;
+        }
+
+        private static Boolean GetRequired(string required, string expression)
+        {
+            var regex = new Regex(expression);
+            var match = regex.Match(required);
+
+            return match.Value.Equals("true") ? true : false;
         }
     }
 }

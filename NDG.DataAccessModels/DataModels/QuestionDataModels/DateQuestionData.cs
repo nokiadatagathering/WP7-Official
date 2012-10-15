@@ -56,11 +56,31 @@ namespace NDG.DataAccessModels.DataModels
             return MinDate != DateTime.MinValue;
         }
 
+        public bool Required { get; set; }
+
         public override bool Validate()
         {
             var validationResult = true;
-            if (!IsEnabled)
-                return validationResult;
+
+            if(Required)
+            {
+                if (Answer.HasValue)
+                {
+                    if (IsMaxDateSet())
+                    {
+                        validationResult &= Answer.Value <= MaxDate;
+                    }
+                    if (IsMinDateSet())
+                    {
+                        validationResult &= Answer.Value >= MinDate;
+                    }
+                    return validationResult;
+                }
+                return false;
+            }
+
+            //if (!IsEnabled)
+            //    return validationResult;
 
             if (Answer.HasValue)
             {
@@ -72,9 +92,10 @@ namespace NDG.DataAccessModels.DataModels
                 {
                     validationResult &= Answer.Value >= MinDate;
                 }
-                return validationResult;
             }
-            return false;
+
+            return validationResult;
+            //return false;
         }
 
         public override string InvalidMessage
@@ -82,6 +103,11 @@ namespace NDG.DataAccessModels.DataModels
             get
             {
                 var invalidMessage = new StringBuilder();
+                if (!Answer.HasValue && Required)
+                {
+                    invalidMessage.AppendFormat("Please pick a date!");
+                    return invalidMessage.ToString();
+                }
                 if (IsMaxDateSet())
                     invalidMessage.AppendFormat("Maximum date: {0} ", MaxDate.ToShortDateString());
                 if (IsMaxDateSet())

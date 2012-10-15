@@ -42,9 +42,14 @@ namespace NDG.DataAccessModels.DataModels
             Answer = answer;
         }
 
+        public bool Required { get; set; }
+
         public override bool Validate()
         {
-            return !IsEnabled || (!string.IsNullOrEmpty(Answer));
+            if(Required)
+                return !IsEnabled || (!string.IsNullOrEmpty(Answer) && Required);
+            //return !IsEnabled || (!string.IsNullOrEmpty(Answer));
+            return true;
         }
 
         public override string InvalidMessage

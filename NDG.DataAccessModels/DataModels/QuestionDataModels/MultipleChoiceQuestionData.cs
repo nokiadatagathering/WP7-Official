@@ -62,10 +62,15 @@ namespace NDG.DataAccessModels.DataModels
             Options = new List<ChoiceTextValuePair>();
             Answers = new ObservableCollection<ChoiceTextValuePair>();
         }
+
+        public bool Required { get; set; }
+
         public override bool Validate()
         {
-            return !IsEnabled || Answers.Count != 0;
-
+            if(Required)
+                return !IsEnabled || Answers.Count != 0 && Required;
+            //return !IsEnabled || Answers.Count != 0;
+            return true;
         }
 
         public override string InvalidMessage

@@ -76,10 +76,14 @@ namespace NDG.DataAccessModels.DataModels
             return string.Empty;
         }
 
+        public bool Required { get; set; }
+
         public override bool Validate()
         {
-            return !IsEnabled || Answer != null;
-
+            if(Required)
+                return !IsEnabled || Answer != null && Required;
+            //return !IsEnabled || Answer != null;
+            return true;
         }
 
         public override string InvalidMessage

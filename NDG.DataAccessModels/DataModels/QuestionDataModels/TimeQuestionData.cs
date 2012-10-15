@@ -49,9 +49,14 @@ namespace NDG.DataAccessModels.DataModels
             return Answer.HasValue ? Answer.Value.ToUniversalTime().ToString("hh:mm:ss:00.000Z") : string.Empty;
         }
 
+        public bool Required { get; set; }
+
         public override bool Validate()
         {
-            return !IsEnabled || Answer.HasValue;
+            if(Required)
+                return !IsEnabled || Answer.HasValue && Required;
+            //return !IsEnabled || Answer.HasValue;
+            return true;
         }
 
         public override string InvalidMessage
