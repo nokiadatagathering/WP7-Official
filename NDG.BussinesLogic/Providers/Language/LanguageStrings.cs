@@ -321,6 +321,8 @@ namespace NDG.BussinesLogic.Providers
         public string APPBAR_RESTORE_DEFAULT { get { return LanguageProvider.CurrentLanguage.TryGetString("QTJ_APPBAR_RESTORE_DEFAULT"); } }
         public string APPBAR_NEW { get { return LanguageProvider.CurrentLanguage.TryGetString("QTJ_APPBAR_NEW"); } }
 
+        public string RECORD_LOCATION { get { return LanguageProvider.CurrentLanguage.TryGetString("QTJ_RECORD_LOCATION"); } }
+
         public void RaiseAllPropertyChanged()
         {
             var properties = this.GetType().GetProperties();
