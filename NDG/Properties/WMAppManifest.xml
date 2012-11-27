@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{9de6857c-def1-4186-9e54-b667aab78d5e}" Title="Nokia Data Gathering" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="NDG author" Description="Sample description" Publisher="NDG">
+  <App xmlns="" ProductID="{9de6857c-def1-4186-9e54-b667aab78d5e}" Title="Nokia Data Gathering" RuntimeType="Silverlight" Version="1.1.0.0" Genre="apps.normal"  Author="NDG author" Description="Sample description" Publisher="NDG">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_GAMERSERVICES"/>
