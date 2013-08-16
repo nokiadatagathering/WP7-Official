@@ -52,13 +52,13 @@
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="Microsoft.Silverlight.Testing">
-      <HintPath>..\Libreries\Microsoft.Silverlight.UnitTesting\Microsoft.Silverlight.Testing.dll</HintPath>
+      <HintPath>..\Libraries\Microsoft.Silverlight.UnitTesting\Microsoft.Silverlight.Testing.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight">
-      <HintPath>..\Libreries\Microsoft.Silverlight.UnitTesting\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll</HintPath>
+      <HintPath>..\Libraries\Microsoft.Silverlight.UnitTesting\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="Moq.Silverlight">
-      <HintPath>..\Libreries\Microsoft.Silverlight.UnitTesting\Moq.Silverlight.dll</HintPath>
+      <HintPath>..\Libraries\Microsoft.Silverlight.UnitTesting\Moq.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="system" />

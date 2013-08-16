@@ -43,10 +43,10 @@
   <ItemGroup>
     <Reference Include="Coding4Fun.Phone.Controls, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libreries\Coding4Fun\Coding4Fun.Phone.Controls.dll</HintPath>
+      <HintPath>..\Libraries\Coding4Fun\Coding4Fun.Phone.Controls.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.WP7">
-      <HintPath>..\Libreries\GalaSoft.MvvmLight\GalaSoft.MvvmLight.WP7.dll</HintPath>
+      <HintPath>..\Libraries\GalaSoft.MvvmLight\GalaSoft.MvvmLight.WP7.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
@@ -57,7 +57,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libreries\System.Windows.Interactivity\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\Libraries\System.Windows.Interactivity\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Net" />

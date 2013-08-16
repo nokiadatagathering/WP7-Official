@@ -43,10 +43,10 @@
   <ItemGroup>
     <Reference Include="Coding4Fun.Phone.Controls, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libreries\Coding4Fun\Coding4Fun.Phone.Controls.dll</HintPath>
+      <HintPath>..\Libraries\Coding4Fun\Coding4Fun.Phone.Controls.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.WP7">
-      <HintPath>..\Libreries\GalaSoft.MvvmLight\GalaSoft.MvvmLight.WP7.dll</HintPath>
+      <HintPath>..\Libraries\GalaSoft.MvvmLight\GalaSoft.MvvmLight.WP7.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="system.data.linq" />
