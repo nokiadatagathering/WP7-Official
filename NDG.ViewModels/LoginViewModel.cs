@@ -8,13 +8,13 @@ namespace NDG.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
     using System.Windows;
+    using System.Windows.Controls.Primitives;
     using NDG.BussinesLogic.Providers;
     using NDG.Common;
     using NDG.DataAccessModels.Repositories;
     using System.IO.IsolatedStorage;
     using NDG.Helpers.Classes;
-
-
+    using DeepForest.Phone.Assets.Tools;
 
     /// <summary>
     /// View model for login view.
@@ -53,6 +53,12 @@ namespace NDG.ViewModels
         /// Is there is authorization data or not.
         /// </summary>
         private bool isAuthorized = false;
+
+        /// <summary>
+        /// A key to store whether the user accepted or
+        /// declined the EULA.
+        /// </summary>
+        private const string EULA_KEY = "eula";
 
         #endregion Fields
 
@@ -172,10 +178,23 @@ namespace NDG.ViewModels
                     {
                         IsolatedStorageSettings.ApplicationSettings[_firstLaunchKey] = wasInitialization;
                         var result = MessageBox.Show("Would you like this application to use your phone's GPS function?", "GPS", MessageBoxButton.OKCancel);
-
                         var currentSettings = settingsRepository.GetCurrentSettings();
                         currentSettings.IsGpsEnabled = result == MessageBoxResult.OK;
-                        settingsRepository.UpdateCurrentSettings(currentSettings);                        
+                        settingsRepository.UpdateCurrentSettings(currentSettings);
+                    }
+
+                    bool userAcceptedEula = false;
+                    var store = IsolatedStorageSettings.ApplicationSettings;
+                    if (store.Contains(EULA_KEY))
+                        userAcceptedEula = (bool)store[EULA_KEY];
+
+                    if (!userAcceptedEula)
+                    {
+                        NotificationTool.Show(
+                            "Privacy Policy",
+                            "NDG",
+                            new NotificationAction("Accept", () => { AcceptedPrivacy(); }),
+                            new NotificationAction("Decline", () => { DeclinedPrivacy(); }));
                     }
 
                     GpsTracker.Instance.GpsAllowed = settingsRepository.GetCurrentSettings().IsGpsEnabled;
@@ -196,6 +215,30 @@ namespace NDG.ViewModels
             {
                 this.ServerPath = pageParameters[SEVER_PATH_PARAMETER];
             }
+        }
+
+        /// <summary>
+        /// Stores accept option.
+        /// </summary>
+        private void AcceptedPrivacy()
+        {
+            var store = IsolatedStorageSettings.ApplicationSettings;
+            if (store.Contains(EULA_KEY))
+            {
+                store[EULA_KEY] = true;
+            }
+            else
+            {
+                store.Add(EULA_KEY, true);
+            }
+        }
+
+        /// <summary>
+        /// Stores decline option.
+        /// </summary>
+        private void DeclinedPrivacy()
+        {
+            throw new Wp7EulaPopup.Exception.QuitException();
         }
 
         /// <summary>

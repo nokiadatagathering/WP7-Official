@@ -45,6 +45,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\Coding4Fun\Coding4Fun.Phone.Controls.dll</HintPath>
     </Reference>
+    <Reference Include="DeepForest.Phone.Assets">
+      <HintPath>..\Libraries\WPAssets\DeepForest.Phone.Assets.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight.WP7">
       <HintPath>..\Libraries\GalaSoft.MvvmLight\GalaSoft.MvvmLight.WP7.dll</HintPath>
     </Reference>

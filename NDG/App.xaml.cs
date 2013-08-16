@@ -140,11 +140,26 @@ namespace NDG
         /// <param name="e">Event parameters</param>
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
+            //if the exception is of type QuitException, do nothing
+            //taken from http://www.imaginativeuniversal.com/blog/post/2010/08/22/How-to-Quit-a-WP7-Silverlight-Application.aspx.
+            if (e.ExceptionObject is Wp7EulaPopup.Exception.QuitException)
+                return;
+
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 // An unhandled exception has occurred; break into the debugger
                 System.Diagnostics.Debugger.Break();
             }
+        }
+
+        /// <summary>
+        /// Quits the application by throw a QuitException.
+        /// </summary>
+        public static void Quit()
+        {
+            //my debugger still catches this as an unhandled exception
+            //the world doesn't come crashing down, however
+            throw new Wp7EulaPopup.Exception.QuitException();
         }
 
         #region Phone application initialization
