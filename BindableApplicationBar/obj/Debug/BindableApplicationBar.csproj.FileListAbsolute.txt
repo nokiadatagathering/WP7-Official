@@ -1,6 +1,0 @@
-D:\Projects\NDG\ndgNewArchitecture\BindableApplicationBar\Bin\Debug\BindableApplicationBar.dll
-D:\Projects\NDG\ndgNewArchitecture\BindableApplicationBar\Bin\Debug\BindableApplicationBar.pdb
-D:\Projects\NDG\ndgNewArchitecture\BindableApplicationBar\obj\Debug\ResolveAssemblyReference.cache
-D:\Projects\NDG\ndgNewArchitecture\BindableApplicationBar\obj\Debug\BindableApplicationBar.g.resources
-D:\Projects\NDG\ndgNewArchitecture\BindableApplicationBar\obj\Debug\BindableApplicationBar.dll
-D:\Projects\NDG\ndgNewArchitecture\BindableApplicationBar\obj\Debug\BindableApplicationBar.pdb
