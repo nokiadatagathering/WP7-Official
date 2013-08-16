@@ -59,9 +59,23 @@
                    Foreground="{StaticResource PhoneAccentBrush}"
                    Margin="24,0"/>
 
-        <TextBlock Text="4.04"
+        <TextBlock Text="4.11"
                    Grid.Row="6"
-                   Margin="24,0"/>
+                   Margin="24,0,24,0"/>
+
+        <!--<TextBlock Text="http://nokia.mobi/privacy/policy"
+                   Grid.Row="7"
+                   Margin="24,0"/> -->
+
+        <RichTextBox Grid.Row="7" Margin="12,0">
+            <Paragraph>
+                <Hyperlink Foreground="{StaticResource PhoneAccentBrush}"
+                           FontSize="24"
+                           FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                           NavigateUri="http://nokia.mobi/privacy/policy" 
+                           TargetName="_blank">Privacy Policy</Hyperlink>
+            </Paragraph>
+        </RichTextBox>
 
     </Grid>
     
