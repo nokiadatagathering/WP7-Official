@@ -11,7 +11,7 @@
 
 ## Nokia Data Gathering Windows Phone Client
 
-Current version: __4.11__
+Current version: __5.04__
 
 ## Learn More
 

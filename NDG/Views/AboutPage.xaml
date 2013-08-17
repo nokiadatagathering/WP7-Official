@@ -59,7 +59,7 @@
                    Foreground="{StaticResource PhoneAccentBrush}"
                    Margin="24,0"/>
 
-        <TextBlock Text="4.11"
+        <TextBlock Text="5.04"
                    Grid.Row="6"
                    Margin="24,0,24,0"/>
 
